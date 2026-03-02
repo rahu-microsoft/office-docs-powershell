@@ -25,7 +25,7 @@ For information about the parameter sets in the Syntax section below, see [Excha
 ```
 New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers] [-WorkloadType <Microsoft.Exchange.MailboxReplicationService.RequestWorkloadType>] [-WorkflowControlFlags <MigrationWorkflowControlFlags>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -54,7 +54,7 @@ New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingU
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase <DatabaseIdParameter>
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -79,7 +79,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase 
 ```
 New-MigrationBatch <MultiValuedProperty> -Name <String> [-UserIds]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -124,7 +124,7 @@ New-MigrationBatch -Name <String> [-Users] <MultiValuedProperty>
 ```
 New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [-WorkflowControlFlags <MigrationWorkflowControlFlags>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -159,7 +159,7 @@ New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -192,7 +192,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -217,7 +217,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup
 ```
 New-MigrationBatch -Name <String> [-WorkflowTemplate <String>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCSV <Boolean>]
+ [-AllowUnknownColumnsInCsv <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -507,8 +507,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AllowUnknownColumnsInCSV
-The AllowUnknownColumnsInCSV parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
+### -AllowUnknownColumnsInCsv
+The AllowUnknownColumnsInCsv parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
 
 - $true: The migration ignores (silently skips) unknown columns in the CSV file (including optional columns with misspelled column headers). All unknown columns are treated like extra columns that aren't used by migration.
 
