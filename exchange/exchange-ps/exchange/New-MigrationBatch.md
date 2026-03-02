@@ -25,7 +25,7 @@ For information about the parameter sets in the Syntax section below, see [Excha
 ```
 New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers] [-WorkloadType <Microsoft.Exchange.MailboxReplicationService.RequestWorkloadType>] [-WorkflowControlFlags <MigrationWorkflowControlFlags>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -39,7 +39,7 @@ New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingU
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
@@ -54,7 +54,7 @@ New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingU
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase <DatabaseIdParameter>
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -66,7 +66,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase 
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
@@ -79,7 +79,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase 
 ```
 New-MigrationBatch <MultiValuedProperty> -Name <String> [-UserIds]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -90,7 +90,7 @@ New-MigrationBatch <MultiValuedProperty> -Name <String> [-UserIds]
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -112,7 +112,7 @@ New-MigrationBatch -Name <String> [-Users] <MultiValuedProperty>
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -124,7 +124,7 @@ New-MigrationBatch -Name <String> [-Users] <MultiValuedProperty>
 ```
 New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [-WorkflowControlFlags <MigrationWorkflowControlFlags>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -141,7 +141,7 @@ New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
@@ -159,7 +159,7 @@ New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-ArchiveOnly]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
@@ -174,7 +174,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
@@ -192,7 +192,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
 ```
 New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -204,7 +204,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-SourceEndpoint <MigrationEndpointIdParameter>]
@@ -217,7 +217,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup
 ```
 New-MigrationBatch -Name <String> [-WorkflowTemplate <String>]
  [-AllowIncrementalSyncs <Boolean>]
- [-AllowUnknownColumnsInCsv <Boolean>]
+ [-AllowUnknownColumnsInCSV <Boolean>]
  [-AutoComplete]
  [-AutoRetryCount <Int32>]
  [-AutoStart]
@@ -227,7 +227,7 @@ New-MigrationBatch -Name <String> [-WorkflowTemplate <String>]
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <Timespan>]
+ [-ReportInterval <TimeSpan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -507,8 +507,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AllowUnknownColumnsInCsv
-The AllowUnknownColumnsInCsv parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
+### -AllowUnknownColumnsInCSV
+The AllowUnknownColumnsInCSV parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
 
 - $true: The migration ignores (silently skips) unknown columns in the CSV file (including optional columns with misspelled column headers). All unknown columns are treated like extra columns that aren't used by migration.
 
@@ -1030,7 +1030,7 @@ In Exchange Online PowerShell, if you specify a date/time value without a time z
 
 ```yaml
 Type: DateTime
-Parameter Sets: Sets: (All)
+Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Online
 
@@ -1194,7 +1194,7 @@ Accept wildcard characters: False
 ```
 
 ### -WorkflowTemplate
-The WorkflowControlFlags parameter specifies advanced controls for the steps that are performed in the migration. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
+The WorkflowTemplate parameter specifies the name of an expert migration template to use for the migration batch. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
 
 ```yaml
 Type: String
