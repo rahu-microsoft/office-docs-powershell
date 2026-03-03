@@ -39,7 +39,7 @@ New-MigrationBatch [-Local] -Name <String> -CSVData <Byte[]> [-DisallowExistingU
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
@@ -66,7 +66,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> -SourcePublicFolderDatabase 
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
@@ -90,7 +90,7 @@ New-MigrationBatch <MultiValuedProperty> -Name <String> [-UserIds]
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -112,7 +112,7 @@ New-MigrationBatch -Name <String> [-Users] <MultiValuedProperty>
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -141,7 +141,7 @@ New-MigrationBatch -Name <String> [-CSVData <Byte[]>] [-DisallowExistingUsers] [
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
@@ -174,7 +174,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-DisallowExistingUsers]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
  [-PrimaryOnly]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipMerging <MultiValuedProperty>]
  [-SkipMoving <MultiValuedProperty>]
  [-SkipReports]
@@ -204,7 +204,7 @@ New-MigrationBatch -Name <String> -CSVData <Byte[]> [-PublicFolderToUnifiedGroup
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-SourceEndpoint <MigrationEndpointIdParameter>]
@@ -227,7 +227,7 @@ New-MigrationBatch -Name <String> [-WorkflowTemplate <String>]
  [-Locale <CultureInfo>]
  [-NotificationEmails <MultiValuedProperty>]
  [-Partition <MailboxIdParameter>]
- [-ReportInterval <TimeSpan>]
+ [-ReportInterval <Timespan>]
  [-SkipReports]
  [-SkipSteps <SkippableMigrationSteps[]>]
  [-StartAfter <DateTime>]
@@ -258,7 +258,7 @@ Onboarding and offboarding in Exchange Online
 
 - IMAP migration: This onboarding migration type migrates mailbox data from an IMAP server (including Exchange) to Exchange Online. For an IMAP migration, you must first provision mailboxes in Exchange Online before you can migrate mailbox data. For more information, see Example 7.
 
-- Google Workspace migration: This onboarding migration type migrates mailbox data from a G Suite organization to Exchange Online.  For a Google Workspace migration, you must first provision mail users (or mailboxes) in Exchange Online before you can migrate mailbox data.
+- G Suite migration: This onboarding migration type migrates mailbox data from a G Suite organization to Exchange Online.  For a G Suite migration, you must first provision mail users (or mailboxes) in Exchange Online before you can migrate mailbox data.
 
 You need to be assigned permissions before you can run this cmdlet. Although this topic lists all parameters for the cmdlet, you may not have access to some parameters if they're not included in the permissions assigned to you. To find the permissions required to run any cmdlet or parameter in your organization, see [Find the permissions required to run any Exchange cmdlet](https://docs.microsoft.com/powershell/exchange/find-exchange-cmdlet-permissions).
 
@@ -350,350 +350,21 @@ This example is the same as Example 8, but the TimeZone parameter is also used. 
 
 ## PARAMETERS
 
-### -AdoptPreexisting
-This parameter is available only in the cloud-based service.
-
-The AdoptPreexisting switch specifies whether to adopt pre-existing migration users from other batches into this new batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AllowIncrementalSyncs
-This parameter is available only in on-premises Exchange.
-
-The AllowIncrementalSyncs parameter specifies whether to enable or disable incremental synchronization. Valid values are:
-
-- $true: Incremental synchronization is enabled. Any new messages that are sent to the source mailbox are copied to the corresponding target mailbox once every 24 hours. This is the default value.
-
-- $false: Incremental synchronization is disabled. The migration batch will go into the Stopped state after the initial synchronization is complete. To complete a migration batch for local moves, cross-forest moves, or remote move migrations, you need to enable incremental synchronization by using the Set-MigrationBatch cmdlet.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AllowUnknownColumnsInCsv
-The AllowUnknownColumnsInCsv parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
-
-- $true: The migration ignores (silently skips) unknown columns in the CSV file (including optional columns with misspelled column headers). All unknown columns are treated like extra columns that aren't used by migration.
-
-- $false: The migration fails if there are any unknown columns in the CSV file.This setting protects against spelling errors in column headers. This is the default value.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -Analyze
-This parameter is available only in the cloud-based service.
-
-The Analyze switch specifies that you want to create a mailbox analysis batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -ArchiveDomain
-This parameter is available only in the cloud-based service.
-
-The ArchiveDomain parameter specifies the archive domain name for onboarding or offboarding migrations.
+### -Name
+The Name parameter specifies an unique name for the migration batch on each system (Exchange On-premises or Exchange Online). The maximum length is 64 characters. If the value contains spaces, enclose the value in quotation marks.
 
 ```yaml
 Type: String
-Parameter Sets: Onboarding, Offboarding
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -ArchiveOnly
-The ArchiveOnly switch specifies that only archive mailboxes are migrated for the users in the migration batch (primary mailboxes aren't migrated). You don't need to specify a value with this switch.
-
-You can only use this switch for local moves and remote move migrations.
-
-You can use the TargetArchiveDatabases parameter to specify the database to migrate the archive mailboxes to. You can also specify the target archive database in the CSV file. If you don't specify the target archive database, the cmdlet uses the automatic mailbox distribution logic to select the database.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Local, Onboarding, Offboarding
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AutoComplete
-The AutoComplete switch forces the finalization of the individual mailboxes as soon as the mailbox has completed initial synchronization. You don't need to specify a value with this switch.
-
-You can only use this switch for local moves and remote move migrations.
-
-If you don't use this switch, you need to run the Complete-MigrationBatch cmdlet to finalize a migration batch.
-
-```yaml
-Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-
-### -AutoProvisioning
-This parameter is available only in the cloud-based service.
-
-The AutoProvisioning switch specifies whether to automatically provision mailboxes for Google Workspace migration or analysis batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AutoRetryCount
-This parameter is available only in on-premises Exchange.
-
-The AutoRetryCount parameter specifies the number of attempts to restart the migration batch to migrate mailboxes that encountered errors.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AutoStart
-The AutoStart switch immediately starts the processing of the new migration batch. You don't need to specify a value with this switch.
-
-If you don't use this switch, you need to manually start the migration batch by using the Start-MigrationBatch cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -AvoidMergeOverlap
-This parameter is available only in the cloud-based service.
-
-The AvoidMergeOverlap switch specifies whether to avoid merge overlap on secondary message identifiers during Google Workspace migrations. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -BadItemLimit
-The BadItemLimit parameter specifies the maximum number of bad items that are allowed before the migration request fails. A bad item is a corrupt item in the source mailbox that can't be copied to the target mailbox. Also included in the bad item limit are missing items. Missing items are items in the source mailbox that can't be found in the target mailbox when the migration request is ready to complete.
-
-Valid input for this parameter is an integer or the value unlimited. The default value is 0, which means the migration request will fail if any bad items are detected. If you are OK with leaving a few bad items behind, you can set this parameter to a reasonable value (we recommend 10 or lower) so the migration request can proceed. If too many bad items are detected, consider using the New-MailboxRepairRequest cmdlet to attempt to fix corrupted items in the source mailbox, and try the migration request again.
-
-**Note**: This parameter is being deprecated in the cloud-based service. In the future, if neither the BadItemLimit or LargeItemLimit parameters are specified, the migration will use Skipped Item approval semantics instead of BadItemLimit semantics.
-
-```yaml
-Type: Unlimited
-Parameter Sets: Local, LocalPublicFolder, Onboarding, Offboarding, PublicFolderToUnifiedGroup
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -CompleteAfter
-This parameter is available only in the cloud-based service.
-
-The CompleteAfter parameter specifies a delay before the batch is completed. Data migration for the batch will start, but completion won't start until the date/time you specify with this parameter.
-
-Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018. You can enter the date only, or you can enter the date and time of day. If you enter the date and time of day, enclose the value in quotation marks ("), for example, "09/01/2018 5:00 PM".
-
-In Exchange Online PowerShell, if you specify a date/time value without a time zone, the value is in Coordinated Universal Time (UTC). To specify a value, use either of the following options:
-
-- Specify the date/time value in UTC: For example, `"7/30/2020 9:00PM Z"`.
-
-- Specify the date/time value in your local time zone: For example, `"7/30/2020 9:00PM -700"`. The value will be converted to UTC if you don't use the TimeZone parameter.
-
-```yaml
-Type: DateTime
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -Confirm
-The Confirm switch specifies whether to show or hide the confirmation prompt. How this switch affects the cmdlet depends on if the cmdlet requires confirmation before proceeding.
-
-- Destructive cmdlets (for example, Remove-\* cmdlets) have a built-in pause that forces you to acknowledge the command before proceeding. For these cmdlets, you can skip the confirmation prompt by using this exact syntax: -Confirm:$false.
-
-- Most other cmdlets (for example, New-\* and Set-\* cmdlets) don't have a built-in pause. For these cmdlets, specifying the Confirm switch without a value introduces a pause that forces you acknowledge the command before proceeding.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -ConnectionLogicalId
-This parameter is available only in the cloud-based service.
-
-The ConnectionLogicalId parameter specifies the connection logical ID for the Slack connector migration batch.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -ContentFilter
-This parameter is available only in the cloud-based service.
-
-The ContentFilter parameter specifies a MAPI restriction filter to apply to folder contents during migration.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -ContentFilterLanguage
-This parameter is available only in the cloud-based service.
-
-The ContentFilterLanguage parameter specifies the language to use for content filtering with the ContentFilter parameter. Valid input for this parameter is a supported culture code value from the Microsoft .NET Framework CultureInfo class.
-
-```yaml
-Type: CultureInfo
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 
 ### -CSVData
 The CSVData parameter specifies the CSV file that contains information about the user mailboxes to be moved or migrated. The required attributes in the header row of the CSV file vary depending on the type of migration. For more information, see [CSV files for mailbox migration](https://docs.microsoft.com/exchange/csv-files-for-mailbox-migration-exchange-2013-help).
@@ -728,14 +399,245 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Local
+This parameter is available only in on-premises Exchange.
 
-### -DataFusion
-This parameter is available only in the cloud-based service.
-
-The DataFusion switch specifies whether to enable Data Fusion for Google Workspace migration batches. You don't need to specify a value with this switch.
+The Local switch specifies a local move (mailboxes are moved to a different mailbox database in the same Active Directory forest). You don't need to specify a value with this switch.
 
 ```yaml
 Type: SwitchParameter
+Parameter Sets: Local
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourcePublicFolderDatabase
+This parameter is available only in on-premises Exchange.
+
+The SourcePublicFolderDatabase parameter specifies the source public folder database that's used in a public folder migration. You can use any value that uniquely identifies the database. For example:
+
+- Name
+
+- Distinguished name (DN)
+
+- GUID
+
+```yaml
+Type: DatabaseIdParameter
+Parameter Sets: LocalPublicFolder
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UserIds
+The UserIds parameter specifies the users that you want to copy from an existing migration batch (for example, if a previous migration was partially successful). You identify a user by email address or by their Guid property value from the Get-MigrationUser cmdlet. You can specify multiple users separated by commas.
+
+The users that you specify for this parameter must be defined in an existing migration batch.
+
+To disable the migration of the users in the original migration batch, use the DisableOnCopy switch with this parameter.
+
+```yaml
+Type: MultiValuedProperty
+Parameter Sets: PreexistingUserIds
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True
+Accept wildcard characters: False
+```
+
+### -Users
+The Users parameter specifies the users that you want to copy from an existing migration batch (for example, if a previous migration was partially successful). You identify the users by using the Get-MigrationUser cmdlet. For example:
+
+$Failed = Get-MigrationUser -Status Failed
+
+New-MigrationBatch -Name "Retry Failed Users" -Users $Failed
+
+The users that you specify for this parameter must be defined in an existing migration batch.
+
+To disable the migration of the users in the original migration batch, use the DisableOnCopy switch with this parameter.
+
+```yaml
+Type: MultiValuedProperty
+Parameter Sets: Preexisting
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True
+Accept wildcard characters: False
+```
+
+### -AllowIncrementalSyncs
+This parameter is available only in on-premises Exchange.
+
+The AllowIncrementalSyncs parameter specifies whether to enable or disable incremental synchronization. Valid values are:
+
+- $true: Incremental synchronization is enabled. Any new messages that are sent to the source mailbox are copied to the corresponding target mailbox once every 24 hours. This is the default value.
+
+- $false: Incremental synchronization is disabled. The migration batch will go into the Stopped state after the initial synchronization is complete. To complete a migration batch for local moves, cross-forest moves, or remote move migrations, you need to enable incremental synchronization by using the Set-MigrationBatch cmdlet.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowUnknownColumnsInCsv
+The AllowUnknownColumnsInCsv parameter specifies whether to allow extra columns in the CSV file that aren't used by migration. Valid values are:
+
+- $true: The migration ignores (silently skips) unknown columns in the CSV file (including optional columns with misspelled column headers). All unknown columns are treated like extra columns that aren't used by migration.
+
+- $false: The migration fails if there are any unknown columns in the CSV file.This setting protects against spelling errors in column headers. This is the default value.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ArchiveOnly
+The ArchiveOnly switch specifies that only archive mailboxes are migrated for the users in the migration batch (primary mailboxes aren't migrated). You don't need to specify a value with this switch.
+
+You can only use this switch for local moves and remote move migrations.
+
+You can use the TargetArchiveDatabases parameter to specify the database to migrate the archive mailboxes to. You can also specify the target archive database in the CSV file. If you don't specify the target archive database, the cmdlet uses the automatic mailbox distribution logic to select the database.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Local, Onboarding, Offboarding
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoComplete
+The AutoComplete switch forces the finalization of the individual mailboxes as soon as the mailbox has completed initial synchronization. You don't need to specify a value with this switch.
+
+You can only use this switch for local moves and remote move migrations.
+
+If you don't use this switch, you need to run the Complete-MigrationBatch cmdlet to finalize a migration batch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoRetryCount
+This parameter is available only in on-premises Exchange.
+
+The AutoRetryCount parameter specifies the number of attempts to restart the migration batch to migrate mailboxes that encountered errors.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoStart
+The AutoStart switch immediately starts the processing of the new migration batch. You don't need to specify a value with this switch.
+
+If you don't use this switch, you need to manually start the migration batch by using the Start-MigrationBatch cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BadItemLimit
+The BadItemLimit parameter specifies the maximum number of bad items that are allowed before the migration request fails. A bad item is a corrupt item in the source mailbox that can't be copied to the target mailbox. Also included in the bad item limit are missing items. Missing items are items in the source mailbox that can't be found in the target mailbox when the migration request is ready to complete.
+
+Valid input for this parameter is an integer or the value unlimited. The default value is 0, which means the migration request will fail if any bad items are detected. If you are OK with leaving a few bad items behind, you can set this parameter to a reasonable value (we recommend 10 or lower) so the migration request can proceed. If too many bad items are detected, consider using the New-MailboxRepairRequest cmdlet to attempt to fix corrupted items in the source mailbox, and try the migration request again.
+
+**Note**: This parameter is being deprecated in the cloud-based service. In the future, if neither the BadItemLimit or LargeItemLimit parameters are specified, the migration will use Skipped Item approval semantics instead of BadItemLimit semantics.
+
+```yaml
+Type: Unlimited
+Parameter Sets: Local, LocalPublicFolder, Onboarding, Offboarding, PublicFolderToUnifiedGroup
+Aliases:
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CompleteAfter
+This parameter is available only in the cloud-based service.
+
+The CompleteAfter parameter specifies a delay before the batch is completed. Data migration for the batch will start, but completion won't start until the date/time you specify with this parameter.
+
+Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018. You can enter the date only, or you can enter the date and time of day. If you enter the date and time of day, enclose the value in quotation marks ("), for example, "09/01/2018 5:00 PM".
+
+In Exchange Online PowerShell, if you specify a date/time value without a time zone, the value is in Coordinated Universal Time (UTC). To specify a value, use either of the following options:
+
+- Specify the date/time value in UTC: For example, `"7/30/2020 9:00PM Z"`.
+
+- Specify the date/time value in your local time zone: For example, `"7/30/2020 9:00PM -700"`. The value will be converted to UTC if you don't use the TimeZone parameter.
+
+```yaml
+Type: DateTime
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Online
@@ -747,6 +649,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+The Confirm switch specifies whether to show or hide the confirmation prompt. How this switch affects the cmdlet depends on if the cmdlet requires confirmation before proceeding.
+
+- Destructive cmdlets (for example, Remove-\* cmdlets) have a built-in pause that forces you to acknowledge the command before proceeding. For these cmdlets, you can skip the confirmation prompt by using this exact syntax: -Confirm:$false.
+
+- Most other cmdlets (for example, New-\* and Set-\* cmdlets) don't have a built-in pause. For these cmdlets, specifying the Confirm switch without a value introduces a pause that forces you acknowledge the command before proceeding.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -DisableOnCopy
 The DisableOnCopy switch disables the original migration job item for a user if you're copying users from an existing batch to a new batch by using the UserIds or Users parameters.. You don't need to specify a value with this switch.
@@ -763,7 +684,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -DisallowExistingUsers
 This parameter is available only in on-premises Exchange.
@@ -785,7 +705,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -DomainController
 This parameter is available only in on-premises Exchange.
 
@@ -803,7 +722,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -ExcludeDumpsters
 This parameter is available only in the cloud-based service.
@@ -825,7 +743,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -ExcludeFolders
 This parameter is available only in the cloud-based service.
 
@@ -843,69 +760,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-
-### -ForwardingDisposition
-This parameter is available only in the cloud-based service.
-
-The ForwardingDisposition parameter specifies how to handle Gmail messages configured for auto-forwarding during Google Workspace migrations. Valid values are:
-
-- KeepInInbox (value 0): Keep the message in the inbox. This is the default value.
-- Delete (value 1): Delete the message.
-- Archive (value 2): Archive the message.
-- MarkAsRead (value 3): Mark the message as read.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -GoogleResource
-This parameter is available only in the cloud-based service.
-
-The GoogleResource switch specifies that this is a Google Resource migration batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -IncludeOtherContacts
-This parameter is available only in the cloud-based service.
-
-The IncludeOtherContacts switch specifies whether to include other contacts during Google Workspace migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 
 ### -LargeItemLimit
 The LargeItemLimit parameter specifies the maximum number of large items that are allowed before the migration request fails. A large item is a message in the source mailbox that exceeds the maximum message size that's allowed in the target mailbox. If the target mailbox doesn't have a specifically configured maximum message size value, the organization-wide value is used.
@@ -933,26 +787,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -Local
-This parameter is available only in on-premises Exchange.
-
-The Local switch specifies a local move (mailboxes are moved to a different mailbox database in the same Active Directory forest). You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Local
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -Locale
 This parameter is available only in on-premises Exchange.
 
@@ -973,45 +807,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -ManagedGmailTeams
-This parameter is available only in the cloud-based service.
-
-The ManagedGmailTeams switch specifies whether to create a Gmail calendar sync to Teams migration batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -MigrateTasks
-This parameter is available only in the cloud-based service.
-
-The MigrateTasks switch specifies whether to migrate Tasks during Google Workspace migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -MoveOptions
 The MoveOptions parameter specifies the stages of the migration that you want to skip for debugging purposes. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
 
@@ -1029,24 +824,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-
-### -Name
-The Name parameter specifies an unique name for the migration batch on each system (Exchange On-premises or Exchange Online). The maximum length is 64 characters. If the value contains spaces, enclose the value in quotation marks.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 
 ### -NotificationEmails
 The NotificationEmails parameter specifies one or more email addresses that migration status reports are sent to. Specify the value as a string array, and separate multiple email addresses with commas.
@@ -1066,7 +843,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -Partition
 This parameter is available only in the cloud-based service.
 
@@ -1084,7 +860,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -PrimaryOnly
 The PrimaryOnly switch specifies that only primary mailboxes are migrated for the users in the migration batch that also have archive mailboxes (archive mailboxes aren't migrated). You don't need to specify a value with this switch.
@@ -1106,7 +881,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -PublicFolderToUnifiedGroup
 This parameter is available only in the cloud-based service.
 
@@ -1124,45 +898,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-
-### -RemoveOnCopy
-This parameter is available only in the cloud-based service.
-
-The RemoveOnCopy switch specifies whether to remove the source migration user from its original batch when it is adopted into this new batch. This switch requires the AdoptPreexisting switch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -RenamePrimaryCalendar
-This parameter is available only in the cloud-based service.
-
-The RenamePrimaryCalendar switch specifies whether to rename the primary calendar during Google Workspace migrations. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 
 ### -ReportInterval
 The ReportInterval parameter specifies how frequently emailed reports should be sent to the email addresses listed within NotificationEmails.
@@ -1184,83 +919,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -Restore
-This parameter is available only in the cloud-based service.
-
-The Restore switch specifies whether to create an onboarding restore batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -SimplifiedSwitchOver
-This parameter is available only in the cloud-based service.
-
-The SimplifiedSwitchOver switch specifies whether to use simplified switchover for Google Workspace migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -SkipDelegates
-This parameter is available only in the cloud-based service.
-
-The SkipDelegates switch specifies whether to skip migration of delegate permissions during Google Workspace or Google Resource migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -SkipDetails
-This parameter is available only in the cloud-based service.
-
-The SkipDetails switch specifies whether to skip detailed mailbox analysis in an analysis batch. This switch is used with the Analyze switch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -SkipMerging
 The SkipMerging parameter specifies the stages of the migration that you want to skip for debugging purposes. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
 
@@ -1276,7 +934,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -SkipMoving
 This parameter has been replaced by the MoveOptions parameter.
@@ -1296,26 +953,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -SkipProvisioning
-This parameter is available only in the cloud-based service.
-
-The SkipProvisioning switch specifies whether to skip mailbox provisioning during Google Workspace or Google Resource migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -SkipReports
 The SkipReports switch specifies that you want to skip automatic reporting for the migration. You don't need to specify a value with this switch.
 
@@ -1331,26 +968,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-
-### -SkipRules
-This parameter is available only in the cloud-based service.
-
-The SkipRules switch specifies whether to skip migration of mail rules during Google Workspace migration batches. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 
 ### -SkipSteps
 This parameter is available only in on-premises Exchange.
@@ -1376,45 +993,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -SlackPublicDataConnector
-This parameter is available only in the cloud-based service.
-
-The SlackPublicDataConnector switch specifies that this is a Slack public data connector migration batch. You don't need to specify a value with this switch.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -SlackWorkspaceId
-This parameter is available only in the cloud-based service.
-
-The SlackWorkspaceId parameter specifies the Slack workspace ID for the Slack public data connector migration batch.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -SourceEndpoint
 The SourceEndpoint parameter specifies the migration endpoint to use for the source of the migration batch. You create the migration endpoint by using the New-MigrationEndpoint cmdlet. You can use any value that uniquely identifies the migration endpoint. For example:
 
@@ -1437,70 +1015,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -SourcePFPrimaryMailboxGuid
-This parameter is available only in the cloud-based service.
-
-The SourcePFPrimaryMailboxGuid parameter specifies the GUID of the source primary mailbox for public folder migration to Exchange Online.
-
-```yaml
-Type: Guid
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -SourcePublicFolderDatabase
-This parameter is available only in on-premises Exchange.
-
-The SourcePublicFolderDatabase parameter specifies the source public folder database that's used in a public folder migration. You can use any value that uniquely identifies the database. For example:
-
-- Name
-
-- Distinguished name (DN)
-
-- GUID
-
-```yaml
-Type: DatabaseIdParameter
-Parameter Sets: LocalPublicFolder
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -StagedRollOutGroupId
-This parameter is available only in the cloud-based service.
-
-The StagedRollOutGroupId parameter specifies the group ID for staged rollout of the Slack public data connector migration batch.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
 ### -StartAfter
 This parameter is available only in the cloud-based service.
 
@@ -1516,7 +1030,7 @@ In Exchange Online PowerShell, if you specify a date/time value without a time z
 
 ```yaml
 Type: DateTime
-Parameter Sets: (All)
+Parameter Sets: Sets: (All)
 Aliases:
 Applicable: Exchange Online
 
@@ -1526,7 +1040,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -TargetArchiveDatabases
 The TargetArchiveDatabases parameter specifies the database where the archive mailboxes specified in the migration batch will be migrated to.
@@ -1547,7 +1060,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -TargetDatabases
 The TargetDatabases parameter specifies the identity of the database that you're moving mailboxes to. You can use the following values:
@@ -1575,7 +1087,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -TargetDeliveryDomain
 The TargetDeliveryDomain parameter specifies the FQDN of the external email address created in the source forest for the mail-enabled user when the migration batch is complete.
 
@@ -1593,7 +1104,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -TargetEndpoint
 The TargetEndpoint parameter specifies the migration endpoint to use for the destination of the migration batch. You create the migration endpoint by using the New-MigrationEndpoint cmdlet. You can use any value that uniquely identifies the migration endpoint. For example:
@@ -1616,7 +1126,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -TimeZone
 The TimeZone parameter specifies the time zone of the administrator who submits the migration batch.
@@ -1644,53 +1153,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-### -UserIds
-The UserIds parameter specifies the users that you want to copy from an existing migration batch (for example, if a previous migration was partially successful). You identify a user by email address or by their Guid property value from the Get-MigrationUser cmdlet. You can specify multiple users separated by commas.
-
-The users that you specify for this parameter must be defined in an existing migration batch.
-
-To disable the migration of the users in the original migration batch, use the DisableOnCopy switch with this parameter.
-
-```yaml
-Type: MultiValuedProperty
-Parameter Sets: PreexistingUserIds
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True
-Accept wildcard characters: False
-```
-
-
-### -Users
-The Users parameter specifies the users that you want to copy from an existing migration batch (for example, if a previous migration was partially successful). You identify the users by using the Get-MigrationUser cmdlet. For example:
-
-$Failed = Get-MigrationUser -Status Failed
-
-New-MigrationBatch -Name "Retry Failed Users" -Users $Failed
-
-The users that you specify for this parameter must be defined in an existing migration batch.
-
-To disable the migration of the users in the original migration batch, use the DisableOnCopy switch with this parameter.
-
-```yaml
-Type: MultiValuedProperty
-Parameter Sets: Preexisting
-Aliases:
-Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True
-Accept wildcard characters: False
-```
-
-
 ### -WhatIf
 The WhatIf switch simulates the actions of the command. You can use this switch to view the changes that would occur without actually applying those changes. You don't need to specify a value with this switch.
 
@@ -1706,7 +1168,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 
 ### -WorkflowControlFlags
 The WorkflowControlFlags parameter specifies advanced controls for the steps that are performed in the migration. Valid values are:
@@ -1732,9 +1193,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -WorkflowTemplate
-The WorkflowTemplate parameter specifies the name of an expert migration template to use for the migration batch. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
+The WorkflowControlFlags parameter specifies advanced controls for the steps that are performed in the migration. Don't use this parameter unless you're directed to do so by Microsoft Customer Service and Support or specific documentation.
 
 ```yaml
 Type: String
@@ -1749,7 +1209,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -WorkloadType
 This parameter is available only in on-premises Exchange.
 
@@ -1760,25 +1219,6 @@ Type: Microsoft.Exchange.MailboxReplicationService.RequestWorkloadType
 Parameter Sets: Local
 Aliases:
 Applicable: Exchange Server 2016, Exchange Server 2019
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-
-### -XMLData
-This parameter is available only in the cloud-based service.
-
-The XMLData parameter specifies the XML data file that contains configuration information for a large archive onboarding migration batch.
-
-```yaml
-Type: Byte[]
-Parameter Sets: (All)
-Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
