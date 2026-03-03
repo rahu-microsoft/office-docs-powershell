@@ -485,6 +485,22 @@ Accept pipeline input: True
 Accept wildcard characters: False
 ```
 
+### -AdoptPreexisting
+The AdoptPreexisting switch specifies whether to adopt pre-existing migration users from other batches into this new batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -AllowIncrementalSyncs
 This parameter is available only in on-premises Exchange.
 
@@ -519,6 +535,38 @@ Type: Boolean
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Analyze
+The Analyze switch specifies that you want to create a mailbox analysis batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ArchiveDomain
+The ArchiveDomain parameter specifies the archive domain name for onboarding or offboarding migrations.
+
+```yaml
+Type: String
+Parameter Sets: Onboarding, Offboarding
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -567,6 +615,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AutoProvisioning
+The AutoProvisioning switch specifies whether to automatically provision mailboxes for Google Workspace migration or analysis batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -AutoRetryCount
 This parameter is available only in on-premises Exchange.
 
@@ -595,6 +659,22 @@ Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AvoidMergeOverlap
+The AvoidMergeOverlap switch specifies whether to avoid merge overlap on secondary message identifiers during Google Workspace migrations. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -661,6 +741,70 @@ Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: cf
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ConnectionLogicalId
+The ConnectionLogicalId parameter specifies the connection logical ID for the Slack connector migration batch.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContentFilter
+The ContentFilter parameter specifies a MAPI restriction filter to apply to folder contents during migration.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContentFilterLanguage
+The ContentFilterLanguage parameter specifies the language to use for content filtering with the ContentFilter parameter. Valid input for this parameter is a supported culture code value from the Microsoft .NET Framework CultureInfo class.
+
+```yaml
+Type: CultureInfo
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DataFusion
+The DataFusion switch specifies whether to enable Data Fusion for Google Workspace migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -761,6 +905,59 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ForwardingDisposition
+The ForwardingDisposition parameter specifies how to handle Gmail messages configured for auto-forwarding during Google Workspace migrations. Valid values are:
+
+- KeepInInbox (value 0): Keep the message in the inbox. This is the default value.
+- Delete (value 1): Delete the message.
+- Archive (value 2): Archive the message.
+- MarkAsRead (value 3): Mark the message as read.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -GoogleResource
+The GoogleResource switch specifies that this is a Google Resource migration batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeOtherContacts
+The IncludeOtherContacts switch specifies whether to include other contacts during Google Workspace migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -LargeItemLimit
 The LargeItemLimit parameter specifies the maximum number of large items that are allowed before the migration request fails. A large item is a message in the source mailbox that exceeds the maximum message size that's allowed in the target mailbox. If the target mailbox doesn't have a specifically configured maximum message size value, the organization-wide value is used.
 
@@ -799,6 +996,38 @@ Type: CultureInfo
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ManagedGmailTeams
+The ManagedGmailTeams switch specifies whether to create a Gmail calendar sync to Teams migration batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MigrateTasks
+The MigrateTasks switch specifies whether to migrate Tasks during Google Workspace migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -899,6 +1128,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -RemoveOnCopy
+The RemoveOnCopy switch specifies whether to remove the source migration user from its original batch when it is adopted into this new batch. This switch requires the AdoptPreexisting switch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RenamePrimaryCalendar
+The RenamePrimaryCalendar switch specifies whether to rename the primary calendar during Google Workspace migrations. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ReportInterval
 The ReportInterval parameter specifies how frequently emailed reports should be sent to the email addresses listed within NotificationEmails.
 
@@ -911,6 +1172,70 @@ Type: TimeSpan
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Restore
+The Restore switch specifies whether to create an onboarding restore batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SimplifiedSwitchOver
+The SimplifiedSwitchOver switch specifies whether to use simplified switchover for Google Workspace migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipDelegates
+The SkipDelegates switch specifies whether to skip migration of delegate permissions during Google Workspace or Google Resource migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipDetails
+The SkipDetails switch specifies whether to skip detailed mailbox analysis in an analysis batch. This switch is used with the Analyze switch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -953,6 +1278,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SkipProvisioning
+The SkipProvisioning switch specifies whether to skip mailbox provisioning during Google Workspace or Google Resource migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SkipReports
 The SkipReports switch specifies that you want to skip automatic reporting for the migration. You don't need to specify a value with this switch.
 
@@ -961,6 +1302,22 @@ Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 Applicable: Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipRules
+The SkipRules switch specifies whether to skip migration of mail rules during Google Workspace migration batches. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -993,6 +1350,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SlackPublicDataConnector
+The SlackPublicDataConnector switch specifies that this is a Slack public data connector migration batch. You don't need to specify a value with this switch.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SlackWorkspaceId
+The SlackWorkspaceId parameter specifies the Slack workspace ID for the Slack public data connector migration batch.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SourceEndpoint
 The SourceEndpoint parameter specifies the migration endpoint to use for the source of the migration batch. You create the migration endpoint by using the New-MigrationEndpoint cmdlet. You can use any value that uniquely identifies the migration endpoint. For example:
 
@@ -1007,6 +1396,38 @@ Type: MigrationEndpointIdParameter
 Parameter Sets: Onboarding, PublicFolderToUnifiedGroup
 Aliases:
 Applicable: Exchange Server 2013, Exchange Server 2016, Exchange Server 2019, Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SourcePFPrimaryMailboxGuid
+The SourcePFPrimaryMailboxGuid parameter specifies the GUID of the source primary mailbox for public folder migration to Exchange Online.
+
+```yaml
+Type: Guid
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -StagedRollOutGroupId
+The StagedRollOutGroupId parameter specifies the group ID for staged rollout of the Slack public data connector migration batch.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -1219,6 +1640,22 @@ Type: Microsoft.Exchange.MailboxReplicationService.RequestWorkloadType
 Parameter Sets: Local
 Aliases:
 Applicable: Exchange Server 2016, Exchange Server 2019
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -XMLData
+The XMLData parameter specifies the XML data file that contains configuration information for a large archive onboarding migration batch.
+
+```yaml
+Type: Byte[]
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
 
 Required: False
 Position: Named
